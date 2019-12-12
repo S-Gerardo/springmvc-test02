@@ -5,6 +5,31 @@
 <web-app>
     <display-name>Archetype Created Web Application @@@@@@@</display-name>
 
+    <!-- 编码格式，解决jsp页面传到控制台乱码问题，filter跟顺序有关 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <!-- 配置 org.springframework.web.filter.HiddenHttpMethodFilter: 可以把 POST 请求转为 DELETE 或 POST 请求 -->
+    <filter>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>springDispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -16,7 +41,12 @@
         </init-param>
     </servlet>
     <servlet-mapping>
+        <!-- 和servlet节点下的servlet-name相同-->
         <servlet-name>springDispatcherServlet</servlet-name>
+        <!-- 可以配置项目请求地址，/代表根目录-->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+
+    
 </web-app>
