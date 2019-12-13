@@ -20,6 +20,13 @@ public class MyController {
 
     private static final String SUCCESS="success";
 
+    @RequestMapping("/testRedirect")
+    public String testRedirect(){
+        System.out.println("testRedirect...");
+//        return "forward:index.jsp";
+        return "redirect:index.jsp";
+    }
+
     /**
      * 1. 有 @ModelAttribute 标记的方法, 会在每个目标方法执行之前被 SpringMVC 调用!
      * 2. @ModelAttribute 注解也可以来修饰目标方法 POJO 类型的入参, 其 value 属性值有如下的作用:
@@ -27,7 +34,7 @@ public class MyController {
      * 2). SpringMVC 会一 value 为 key, POJO 类型的对象为 value, 存入到 request 中.
      */
     @ModelAttribute
-    public void getStudent(@RequestParam("id") Integer id,
+    public void getStudent(@RequestParam(value = "id",required = false) Integer id,
                            Map<String,Object> map){
         System.out.println("this is ModelAttribute");
         if(id!=null){

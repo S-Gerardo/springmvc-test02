@@ -7,6 +7,14 @@
     <title>Insert title here</title>
 </head>
 <body>
+    <a href="/testRedirect">testRedirect</a>
+    <br>
+    <br>
+
+    <a href="/success">toSuccess</a>
+    <br>
+    <br>
+
     <form action="/testModelAttribute" method="post">
         <input type="hidden" name="id" value="1" />
         name: <input type="text" name="name" value="小明">
